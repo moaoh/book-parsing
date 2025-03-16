@@ -57,3 +57,5 @@ if [ $? -eq 0 ]; then
 else
     echo "❌ 변환 중 오류 발생!"
 fi
+
+rm -rf out_json
