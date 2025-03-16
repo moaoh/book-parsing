@@ -4,6 +4,23 @@
 SRC_FILE="main.cpp"
 OUTPUT_FILE="out_json"
 
+
+# 1️⃣ Homebrew 설치 여부 확인
+if ! command -v brew &>/dev/null; then
+    echo "🔍 Homebrew가 설치되어 있지 않습니다. 설치를 시작합니다..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "✅ Homebrew가 이미 설치되어 있습니다."
+fi
+
+# 2️⃣ nlohmann-json 설치 여부 확인
+if ! brew list --formula | grep -q "^nlohmann-json$"; then
+    echo "📦 nlohmann-json을 설치합니다..."
+    brew install nlohmann-json
+else
+    echo "✅ nlohmann-json이 이미 설치되어 있습니다."
+fi
+
 # 입력 인자 확인 (파일명이 없으면 오류 발생)
 if [ $# -eq 0 ]; then
     echo "❌ 오류: TSV 파일명을 입력하세요!"
